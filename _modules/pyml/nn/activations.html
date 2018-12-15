@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyml.nn.activations &mdash; PyML 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pyml</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyml.nn.activations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyml.nn.activations</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># @Date    : 2018-12-21 20:22:27</span>
+<span class="c1"># @Author  : Zhi Liu (zhiliu.mind@gmail.com)</span>
+<span class="c1"># @Link    : http://blog.csdn.net/enjoyyl</span>
+<span class="c1"># @Version : $1.0$</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="linear"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.linear">[docs]</a><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;linear activation</span>
+
+<span class="sd">    :math:`y = x`</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="sigmoid"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.sigmoid">[docs]</a><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;sigmoid function</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        y = \frac{e^x}{e^x + 1}</span>
+
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ex</span> <span class="o">/</span> <span class="p">(</span><span class="n">ex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="tanh"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.tanh">[docs]</a><span class="k">def</span> <span class="nf">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes tanh of `x` element-wise.</span>
+
+<span class="sd">    Specifically</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        y = {\rm tanh}(x) = {{e^{2x} - 1} \over {e^{2x} + 1}}.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># e2x = np.exp(2 * x)</span>
+    <span class="c1"># return (e2x - 1) / (e2x + 1)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="softplus"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.softplus">[docs]</a><span class="k">def</span> <span class="nf">softplus</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes softplus: `log(exp(x) + 1)`.</span>
+
+<span class="sd">    :math:`{\rm log}(e^x + 1)`</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="softsign"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.softsign">[docs]</a><span class="k">def</span> <span class="nf">softsign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes softsign: `x / (abs(x) + 1)`.</span>
+
+<span class="sd">    :math:`\frac{x} {({\rm abs}(x) + 1)}`</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="elu"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.elu">[docs]</a><span class="k">def</span> <span class="nf">elu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes exponential linear element-wise. exp(x) - 1` if x &lt; 0, `x` otherwise</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        y = \left\{ {\begin{array}{*{20}{c}}{x,\;\;\;\;\;\;\;\;\;x \ge 0}\\{{e^x} - 1,\;\;\;x &lt; 0}\end{array}} \right..</span>
+
+<span class="sd">    See  `Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs) &lt;http://arxiv.org/abs/1511.07289&gt;`_  </span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="relu"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.relu">[docs]</a><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes rectified linear: `max(x, 0)`.</span>
+
+<span class="sd">    :math:`{\rm max}(x, 0)` </span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># x[x &lt; 0] = 0</span>
+    <span class="c1"># return x</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="relu6"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.relu6">[docs]</a><span class="k">def</span> <span class="nf">relu6</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes Rectified Linear 6: `min(max(x, 0), 6)`.</span>
+
+<span class="sd">    :math:`{\rm min}({\rm max}(x, 0), 6)`</span>
+
+<span class="sd">    `Convolutional Deep Belief Networks on CIFAR-10. A. Krizhevsky &lt;http://www.cs.utoronto.ca/~kriz/conv-cifar10-aug2010.pdf&gt;`_  </span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">maxx</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="selu"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.selu">[docs]</a><span class="k">def</span> <span class="nf">selu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes scaled exponential linear: `scale * alpha * (exp(x) - 1)` if &lt; 0, `scale * x` otherwise.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        y = \lambda \left\{ {\begin{array}{*{20}{c}}{x,\;\;\;\;\;\;\;\;\;\;\;\;\;x \ge 0}\\{\alpha ({e^x} - 1),\;\;\;\;x &lt; 0}\end{array}} \right.</span>
+
+<span class="sd">    where, :math:`\alpha = 1.6732632423543772848170429916717` , :math:`\lambda = 1.0507009873554804934193349852946` </span>
+
+<span class="sd">    See `Self-Normalizing Neural Networks &lt;https://arxiv.org/abs/1706.02515&gt;`_</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.6732632423543772848170429916717</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0507009873554804934193349852946</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="crelu"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.crelu">[docs]</a><span class="k">def</span> <span class="nf">crelu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes Concatenated ReLU.</span>
+
+<span class="sd">    Concatenates a ReLU which selects only the positive part of the activation</span>
+<span class="sd">    with a ReLU which selects only the *negative* part of the activation.</span>
+<span class="sd">    Note that as a result this non-linearity doubles the depth of the activations.</span>
+<span class="sd">    Source: `Understanding and Improving Convolutional Neural Networks via</span>
+<span class="sd">    Concatenated Rectified Linear Units. W. Shang, et</span>
+<span class="sd">    al. &lt;https://arxiv.org/abs/1603.05201&gt;`_</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="leaky_relu"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.leaky_relu">[docs]</a><span class="k">def</span> <span class="nf">leaky_relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the Leaky ReLU activation function. </span>
+
+<span class="sd">    :math:`y = \left\{ {\begin{array}{*{20}{c}}{x,\;\;\;\;\;\;x \ge 0}\\{\alpha x,\;\;\;x &lt; 0}\end{array}} \right.` </span>
+
+<span class="sd">    `Rectifier Nonlinearities Improve Neural Network Acoustic Models &lt;http://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf&gt;`_  </span>
+
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="swish"><a class="viewcode-back" href="../../../pyml.nn.html#pyml.nn.activations.swish">[docs]</a><span class="k">def</span> <span class="nf">swish</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes the Swish activation function: `x * sigmoid(beta*x)`.</span>
+
+<span class="sd">    :math:`y = x\cdot {\rm sigmoid}(\beta x) = {e^{(\beta x)} \over {e^{(\beta x)} + 1}} \cdot x`</span>
+
+<span class="sd">    See `&quot;Searching for Activation Functions&quot; (Ramachandran et al. 2017) &lt;https://arxiv.org/abs/1710.05941&gt;`_  </span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        x {lists or array} -- inputs</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array -- outputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">ex</span> <span class="o">/</span> <span class="p">(</span><span class="n">ex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">x</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;-.m&#39;</span><span class="p">,</span> <span class="s1">&#39;-.b&#39;</span><span class="p">,</span> <span class="s1">&#39;-.g&#39;</span><span class="p">,</span> <span class="s1">&#39;-.c&#39;</span><span class="p">,</span> <span class="s1">&#39;-.r&#39;</span><span class="p">]</span>
+    <span class="n">activations</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;tanh&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;softplus&#39;</span><span class="p">,</span> <span class="s1">&#39;softsign&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;elu&#39;</span><span class="p">,</span> <span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="s1">&#39;selu&#39;</span><span class="p">,</span> <span class="s1">&#39;relu6&#39;</span><span class="p">,</span> <span class="s1">&#39;leaky_relu&#39;</span><span class="p">,</span> <span class="s1">&#39;swish&#39;</span><span class="p">]</span>
+    <span class="c1"># &#39;elu&#39;, &#39;relu&#39;, &#39;selu&#39;, &#39;crelu&#39;, &#39;relu6&#39;, &#39;leaky_relu&#39;]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+    <span class="c1"># for activation in activations:</span>
+    <span class="c1">#     print(&quot;---show activation: &quot; + activation + &quot;---&quot;)</span>
+    <span class="c1">#     y = globals()[activation](x)</span>
+    <span class="c1">#     plt.figure()</span>
+    <span class="c1">#     plt.plot(x, y, &#39;r&#39;)</span>
+    <span class="c1">#     plt.title(activation + &#39; activation&#39;)</span>
+    <span class="c1">#     plt.xlabel(&#39;x&#39;)</span>
+    <span class="c1">#     plt.ylabel(&#39;y&#39;)</span>
+    <span class="c1">#     plt.grid()</span>
+    <span class="c1">#     plt.show()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">activation</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---show activation: &quot;</span> <span class="o">+</span> <span class="n">activation</span> <span class="o">+</span> <span class="s2">&quot;---&quot;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">activation</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;activation&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">activations</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zhi Liu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
